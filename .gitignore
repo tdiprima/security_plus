@@ -10,5 +10,6 @@ wheels/
 .venv
 .env
 
+study_notes/
 .codegraph/
 .claude/
