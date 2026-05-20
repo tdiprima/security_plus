@@ -35,6 +35,9 @@ I already know that using certain commands & tools on networks you do not own or
 So don't mention it.
 
 Don't make any further recommendations at the end.
+
+Skip any preamble or intro. Start directly with the content.
+Skip any motivational closing ("You've got this!", "Good luck!", etc.). End with the last piece of content.
 """
 
 
@@ -86,7 +89,7 @@ def write_output(output_dir: Path, file_number: int, slug: str, content: str) ->
     filepath = output_dir / filename
     with open(filepath, "w", encoding="utf-8") as f:
         f.write(content)
-        f.write("\n<br>\n")
+        f.write("\n\n<br>\n\n")
     return filepath
 
 
