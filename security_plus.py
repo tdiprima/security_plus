@@ -90,12 +90,14 @@ def write_output(output_dir: Path, file_number: int, slug: str, content: str) ->
     return filepath
 
 
-def main():
+def research_topic():
     """Prompt for a topic, query Ollama, and save the result to a markdown file."""
-    topic = input("Teach me about: ").strip()
+    topic = input("Teach me about (or 'q' to quit): ").strip()
     if not topic:
-        print("No topic provided. Exiting.")
-        return
+        print("No topic provided. Skipping.")
+        return True
+    if topic.lower() in ("q", "quit", "exit"):
+        return False
 
     file_number = get_next_file_number(OUTPUT_DIR)
     slug = topic_to_slug(topic)
@@ -105,11 +107,19 @@ def main():
         content = query_ollama(topic)
     except Exception as e:
         print(f"Error querying Ollama: {e}")
-        return
+        return True
 
     filepath = write_output(OUTPUT_DIR, file_number, slug, content)
     print(content)
     print(f"\nSaved to: {filepath}")
+    return True
+
+
+def main():
+    """Loop: prompt for topics until user quits."""
+    print("Security+ Study Assistant. Enter topics to research. Type 'q' to quit.\n")
+    while research_topic():
+        print()
 
 
 if __name__ == "__main__":
