@@ -27,7 +27,7 @@ With ADHD, my brain tends to remember:
 - hands-on things
 - stories
 - patterns
-So use those ideas when teaching me these concepts.
+So use those ideas when teaching me these concepts, but do not label or announce them (no "(Emotionally Charged)", "(Hands-On)", "(Pattern)", etc.).
 
 In 500 words or less.
 
