@@ -13,25 +13,22 @@ class OllamaConfig:
 
 
 @dataclass(frozen=True)
-class CondenserConfig:
+class SharedConfig:
     max_words: int
-    input_file: str
     output_dir: str
     temperature: float
 
 
 @dataclass(frozen=True)
-class StudyAssistantConfig:
-    max_words: int
-    output_dir: str
-    temperature: float
+class CondenserConfig:
+    input_file: str
 
 
 @dataclass(frozen=True)
 class AppConfig:
     ollama: OllamaConfig
+    shared: SharedConfig
     condenser: CondenserConfig
-    study_assistant: StudyAssistantConfig
 
 
 def load_config() -> AppConfig:
@@ -44,8 +41,8 @@ def load_config() -> AppConfig:
     try:
         return AppConfig(
             ollama=OllamaConfig(**raw["ollama"]),
+            shared=SharedConfig(**raw["shared"]),
             condenser=CondenserConfig(**raw["condenser"]),
-            study_assistant=StudyAssistantConfig(**raw["study_assistant"]),
         )
     except (KeyError, TypeError) as exc:
         print(f"Error: invalid config: {exc}", file=sys.stderr)

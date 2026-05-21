@@ -2,13 +2,10 @@
 base_url = "http://localhost:11434/v1"
 model = "gemma3:latest"
 
-[condenser]
+[shared]
 max_words = 400
-input_file = "input.txt"
 output_dir = "study_notes"
 temperature = 0.7
 
-[study_assistant]
-max_words = 400
-output_dir = "study_notes"
-temperature = 0.7
+[condenser]
+input_file = "input.txt"

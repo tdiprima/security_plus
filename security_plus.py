@@ -17,9 +17,9 @@ _CFG = load_config()
 
 OLLAMA_BASE_URL = _CFG.ollama.base_url
 MODEL = _CFG.ollama.model
-MAX_WORDS = _CFG.study_assistant.max_words
-OUTPUT_DIR = Path(_CFG.study_assistant.output_dir)
-TEMPERATURE = _CFG.study_assistant.temperature
+MAX_WORDS = _CFG.shared.max_words
+OUTPUT_DIR = Path(_CFG.shared.output_dir)
+TEMPERATURE = _CFG.shared.temperature
 
 PROMPT_TEMPLATE = f"""\
 I'm looking to take the 'CompTIA Security+' certification.

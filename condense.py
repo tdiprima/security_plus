@@ -17,10 +17,10 @@ _CFG = load_config()
 
 OLLAMA_BASE_URL = _CFG.ollama.base_url
 MODEL = _CFG.ollama.model
-MAX_WORDS = _CFG.condenser.max_words
+MAX_WORDS = _CFG.shared.max_words
 INPUT_FILE = Path(_CFG.condenser.input_file)
-OUTPUT_DIR = Path(_CFG.condenser.output_dir)
-TEMPERATURE = _CFG.condenser.temperature
+OUTPUT_DIR = Path(_CFG.shared.output_dir)
+TEMPERATURE = _CFG.shared.temperature
 
 PROMPT_TEMPLATE = f"""\
 Condense the following text to {MAX_WORDS} words or less.
