@@ -10,6 +10,7 @@ wheels/
 .venv
 .env
 
+*.txt
 study_notes/
 .codegraph/
 .claude/

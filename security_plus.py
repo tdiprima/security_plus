@@ -10,16 +10,22 @@ from pathlib import Path
 
 from openai import OpenAI
 
-OLLAMA_BASE_URL = "http://localhost:11434/v1"
-MODEL = "gemma3:latest"
-OUTPUT_DIR = Path("study_notes")
+from config import load_config
 
-PROMPT_TEMPLATE = """\
+_CFG = load_config()
+
+OLLAMA_BASE_URL = _CFG["ollama"]["base_url"]
+MODEL = _CFG["ollama"]["model"]
+MAX_WORDS = _CFG["study_assistant"]["max_words"]
+OUTPUT_DIR = Path(_CFG["study_assistant"]["output_dir"])
+TEMPERATURE = _CFG["study_assistant"]["temperature"]
+
+PROMPT_TEMPLATE = f"""\
 I'm looking to take the 'CompTIA Security+' certification.
 I'm a beginner who's looking to understand some things up front.
 
 Teach me about:
-{topic}
+{{topic}}
 
 With ADHD, my brain tends to remember:
 - interesting things
@@ -29,7 +35,7 @@ With ADHD, my brain tends to remember:
 - patterns
 So use those ideas when teaching me these concepts, but do not label or announce them (no "(Emotionally Charged)", "emotional consequence", "(Hands-On)", "(Pattern)", etc.).
 
-In 400 words or less.
+In {MAX_WORDS} words or less.
 
 I already know that using certain commands & tools on networks you do not own or have permission to test can get you in trouble.
 So don't mention it.
@@ -77,7 +83,7 @@ def query_ollama(topic: str) -> str:
             {"role": "system", "content": "You are a helpful, witty, and friendly assistant."},
             {"role": "user", "content": prompt},
         ],
-        temperature=0.7,
+        temperature=TEMPERATURE,
     )
     return response.choices[0].message.content
 

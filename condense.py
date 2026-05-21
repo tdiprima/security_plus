@@ -1,9 +1,9 @@
 # =============================================================================
 # ADHD Text Condenser
 # -----------------------------------------------------------------------------
-# Reads input.txt, sends to Ollama (gemma3:latest) to condense to 350 words
-# or less in an ADHD-friendly format. One-shot, no loop. Writes output to
-# condensed/ directory as numbered markdown files.
+# Reads input.txt, sends to Ollama to condense in an ADHD-friendly format.
+# One-shot, no loop. Writes output to condensed/ directory as numbered
+# markdown files. Configure via config.toml.
 # =============================================================================
 import re
 import sys
@@ -11,13 +11,19 @@ from pathlib import Path
 
 from openai import OpenAI
 
-OLLAMA_BASE_URL = "http://localhost:11434/v1"
-MODEL = "gemma3:latest"
-INPUT_FILE = Path("input.txt")
-OUTPUT_DIR = Path("condensed")
+from config import load_config
 
-PROMPT_TEMPLATE = """\
-Condense the following text to 350 words or less.
+_CFG = load_config()
+
+OLLAMA_BASE_URL = _CFG["ollama"]["base_url"]
+MODEL = _CFG["ollama"]["model"]
+MAX_WORDS = _CFG["condenser"]["max_words"]
+INPUT_FILE = Path(_CFG["condenser"]["input_file"])
+OUTPUT_DIR = Path(_CFG["condenser"]["output_dir"])
+TEMPERATURE = _CFG["condenser"]["temperature"]
+
+PROMPT_TEMPLATE = f"""\
+Condense the following text to {MAX_WORDS} words or less.
 
 Make it easy for an ADHD brain to memorize:
 - Short punchy sentences
@@ -71,7 +77,7 @@ def query_ollama(text: str) -> str:
             {"role": "system", "content": "You are a concise, clear writing assistant."},
             {"role": "user", "content": prompt},
         ],
-        temperature=0.7,
+        temperature=TEMPERATURE,
     )
     return response.choices[0].message.content
 
