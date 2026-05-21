@@ -11,7 +11,7 @@ from pathlib import Path
 from openai import OpenAI
 
 OLLAMA_BASE_URL = "http://localhost:11434/v1"
-MODEL = "gemma4:latest"
+MODEL = "gemma3:latest"
 OUTPUT_DIR = Path("study_notes")
 
 PROMPT_TEMPLATE = """\
@@ -29,7 +29,7 @@ With ADHD, my brain tends to remember:
 - patterns
 So use those ideas when teaching me these concepts, but do not label or announce them (no "(Emotionally Charged)", "emotional consequence", "(Hands-On)", "(Pattern)", etc.).
 
-In 500 words or less.
+In 400 words or less.
 
 I already know that using certain commands & tools on networks you do not own or have permission to test can get you in trouble.
 So don't mention it.
@@ -77,7 +77,7 @@ def query_ollama(topic: str) -> str:
             {"role": "system", "content": "You are a helpful, witty, and friendly assistant."},
             {"role": "user", "content": prompt},
         ],
-        temperature=1,
+        temperature=0.7,
     )
     return response.choices[0].message.content
 
