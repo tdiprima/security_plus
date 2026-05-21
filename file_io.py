@@ -23,5 +23,5 @@ def write_output(output_dir: Path, content: str, slug: str = "condensed") -> Pat
     filepath = output_dir / filename
     with open(filepath, "w", encoding="utf-8") as f:
         f.write(content)
-        f.write("\n\n<br>\n\n")
+        f.write("\n\n<br>\n")
     return filepath

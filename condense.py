@@ -34,7 +34,7 @@ Make it easy for an ADHD brain to memorize:
 - Lead with the most important stuff
 
 Skip any preamble. Start directly with the condensed content.
-No closing remarks or motivational lines.
+No closing remarks, motivational lines, or suggestions.
 
 ---
 
