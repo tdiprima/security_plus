@@ -1,9 +1,9 @@
 # =============================================================================
 # CompTIA Security+ Study Assistant
 # -----------------------------------------------------------------------------
-# Queries Ollama (gemma4:latest) with a Security+ study prompt tailored for
-# ADHD learners. Interactive: prompts for topic, writes numbered markdown files
-# to study_notes/. Files named like 001-fundamentals.md.
+# Queries Ollama with a Security+ study prompt tailored for ADHD learners.
+# Interactive: prompts for topic, writes numbered markdown files to
+# study_notes/. Files named like 001-fundamentals.md. Configure via config.toml.
 # =============================================================================
 import re
 from pathlib import Path
@@ -11,14 +11,15 @@ from pathlib import Path
 from openai import OpenAI
 
 from config import load_config
+from file_io import write_output
 
 _CFG = load_config()
 
-OLLAMA_BASE_URL = _CFG["ollama"]["base_url"]
-MODEL = _CFG["ollama"]["model"]
-MAX_WORDS = _CFG["study_assistant"]["max_words"]
-OUTPUT_DIR = Path(_CFG["study_assistant"]["output_dir"])
-TEMPERATURE = _CFG["study_assistant"]["temperature"]
+OLLAMA_BASE_URL = _CFG.ollama.base_url
+MODEL = _CFG.ollama.model
+MAX_WORDS = _CFG.study_assistant.max_words
+OUTPUT_DIR = Path(_CFG.study_assistant.output_dir)
+TEMPERATURE = _CFG.study_assistant.temperature
 
 PROMPT_TEMPLATE = f"""\
 I'm looking to take the 'CompTIA Security+' certification.
@@ -45,19 +46,6 @@ Don't make any further recommendations at the end.
 Skip any preamble or intro. Start directly with the content.
 Skip any motivational closing ("You've got this!", "Good luck!", etc.). End with the last piece of content.
 """
-
-
-def get_next_file_number(output_dir: Path) -> int:
-    """Return the next sequential 3-digit file number based on existing files."""
-    existing = list(output_dir.glob("[0-9][0-9][0-9]-*.md"))
-    if not existing:
-        return 1
-    numbers = []
-    for filepath in existing:
-        match = re.match(r"^(\d{3})-", filepath.name)
-        if match:
-            numbers.append(int(match.group(1)))
-    return max(numbers) + 1 if numbers else 1
 
 
 def topic_to_slug(topic: str) -> str:
@@ -88,18 +76,7 @@ def query_ollama(topic: str) -> str:
     return response.choices[0].message.content
 
 
-def write_output(output_dir: Path, file_number: int, slug: str, content: str) -> Path:
-    """Write content to a numbered markdown file, appending a trailing <br>."""
-    output_dir.mkdir(parents=True, exist_ok=True)
-    filename = f"{file_number:03d}-{slug}.md"
-    filepath = output_dir / filename
-    with open(filepath, "w", encoding="utf-8") as f:
-        f.write(content)
-        f.write("\n\n<br>\n\n")
-    return filepath
-
-
-def research_topic():
+def research_topic() -> bool:
     """Prompt for a topic, query Ollama, and save the result to a markdown file."""
     topic = input("Teach me about (or 'q' to quit): ").strip()
     if not topic:
@@ -108,17 +85,16 @@ def research_topic():
     if topic.lower() in ("q", "quit", "exit"):
         return False
 
-    file_number = get_next_file_number(OUTPUT_DIR)
     slug = topic_to_slug(topic)
 
     print(f"\nQuerying {MODEL}...\n")
     try:
         content = query_ollama(topic)
-    except Exception as e:
-        print(f"Error querying Ollama: {e}")
+    except Exception as exc:
+        print(f"Error querying Ollama: {exc}")
         return True
 
-    filepath = write_output(OUTPUT_DIR, file_number, slug, content)
+    filepath = write_output(OUTPUT_DIR, content, slug)
     print(content)
     print(f"\nSaved to: {filepath}")
     return True

@@ -5,7 +5,7 @@ model = "gemma3:latest"
 [condenser]
 max_words = 400
 input_file = "input.txt"
-output_dir = "condensed"
+output_dir = "study_notes"
 temperature = 0.7
 
 [study_assistant]
