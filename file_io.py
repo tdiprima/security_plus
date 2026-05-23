@@ -3,7 +3,7 @@ from pathlib import Path
 
 ANSI_COLORS = {
     "yellow": "\033[33m",
-    "blue": "\033[34m",
+    "blue": "\033[96m",
     "red": "\033[31m",
     "green": "\033[32m",
     "magenta": "\033[35m",
