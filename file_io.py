@@ -6,6 +6,7 @@ ANSI_COLORS = {
     "blue": "\033[34m",
     "red": "\033[31m",
     "green": "\033[32m",
+    "magenta": "\033[35m",
 }
 ANSI_RESET = "\033[0m"
 

@@ -87,7 +87,7 @@ def research_topic() -> bool:
 
     slug = topic_to_slug(topic)
 
-    print(f"\nQuerying {MODEL}...\n")
+    print(colorize(f"\nQuerying {MODEL}...\n", "magenta"))
     try:
         content = query_ollama(topic)
     except Exception as exc:
@@ -96,7 +96,7 @@ def research_topic() -> bool:
 
     filepath = write_output(OUTPUT_DIR, content, slug)
     print(content)
-    print(f"\nSaved to: {filepath}")
+    print(colorize(f"\nSaved to: {filepath}", "green"))
     return True
 
 
