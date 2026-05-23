@@ -102,7 +102,7 @@ def research_topic() -> bool:
 
 def main():
     """Loop: prompt for topics until user quits."""
-    print("Security+ Study Assistant. Enter topics to research. Type 'q' to quit.\n")
+    print(colorize("Security+ Study Assistant. Enter topics to research. Type 'q' to quit.", "blue") + "\n")
     while research_topic():
         print()
 
