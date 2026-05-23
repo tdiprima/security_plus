@@ -1,6 +1,19 @@
 import re
 from pathlib import Path
 
+ANSI_COLORS = {
+    "yellow": "\033[33m",
+    "blue": "\033[34m",
+    "red": "\033[31m",
+    "green": "\033[32m",
+}
+ANSI_RESET = "\033[0m"
+
+
+def colorize(text: str, color: str) -> str:
+    """Wrap text in ANSI color codes; falls back to plain text if color unknown."""
+    return f"{ANSI_COLORS.get(color, '')}{text}{ANSI_RESET}"
+
 
 def get_next_file_number(output_dir: Path) -> int:
     """Return the next sequential 3-digit file number based on existing files."""

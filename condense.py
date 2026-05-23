@@ -11,7 +11,7 @@ from pathlib import Path
 from openai import OpenAI
 
 from config import load_config
-from file_io import write_output
+from file_io import colorize, write_output
 
 _CFG = load_config()
 
@@ -73,16 +73,16 @@ def main():
     """Read input.txt, condense via Ollama, save result."""
     text = read_input(INPUT_FILE)
 
-    print(f"Condensing {len(text.split())} words via {MODEL}...\n")
+    print(colorize(f"Condensing {len(text.split())} words via {MODEL}...\n", "blue"))
     try:
         content = query_ollama(text)
     except Exception as exc:
-        print(f"Error querying Ollama: {exc}", file=sys.stderr)
+        print(colorize(f"Error querying Ollama: {exc}", "red"), file=sys.stderr)
         sys.exit(1)
 
     filepath = write_output(OUTPUT_DIR, content)
     print(content)
-    print(f"\nSaved to: {filepath}")
+    print(colorize(f"\nSaved to: {filepath}", "green"))
 
 
 if __name__ == "__main__":

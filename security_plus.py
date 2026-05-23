@@ -11,7 +11,7 @@ from pathlib import Path
 from openai import OpenAI
 
 from config import load_config
-from file_io import write_output
+from file_io import colorize, write_output
 
 _CFG = load_config()
 
@@ -78,7 +78,7 @@ def query_ollama(topic: str) -> str:
 
 def research_topic() -> bool:
     """Prompt for a topic, query Ollama, and save the result to a markdown file."""
-    topic = input("Teach me about (or 'q' to quit): ").strip()
+    topic = input(colorize("Teach me about (or 'q' to quit): ", "yellow")).strip()
     if not topic:
         print("No topic provided. Skipping.")
         return True
