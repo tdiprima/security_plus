@@ -1,9 +1,9 @@
 [project]
 name = "security-plus"
 version = "0.1.0"
-description = "Study material for CompTIA Security+ exam"
+description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    "openai>=2.37.0",
+    "requests>=2.34.2",
 ]

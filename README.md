@@ -1,52 +1,29 @@
-# 🛡️ CompTIA Security+ Study Assistant
+### Structure
+Six focused functions — `read_input_file`, `build_prompt`, `send_to_ollama`, `derive_output_path`,
+`write_output`, and `main` for orchestration.
 
-An AI-powered study tool that generates ADHD-friendly explanations of Security+ exam topics using a local LLM, saving each session as a numbered markdown file.
+### Error handling
+Specific exceptions for missing files, empty files, connection failures, timeouts, HTTP
+errors, and empty API responses — each with a clear message and distinct exit code.
 
-## 📚 Certification Prep Is Dense and Boring by Default
+### Configuration
+- `input_file` — positional argument (required)
+- `--model` — defaults to gemma3
+- `--url` — defaults to http://localhost:11434/api/generate
+- `--timeout` — defaults to 300 seconds
+- `LOG_LEVEL` env var controls logging verbosity
 
-Security+ covers a massive range of concepts — cryptography, network protocols, threat actors, identity management — and most study materials dump walls of dry text. For learners with ADHD, that's a fast path to burnout and forgotten content.
+### Example usage
 
-## 🧠 Learning That Sticks
-
-This tool sends your chosen topic to a locally running Ollama model (Gemma 4) with a prompt engineered for ADHD retention: stories, patterns, emotional hooks, and hands-on framing — all in 500 words or less. Each response is automatically saved to `study_notes/` as a sequentially numbered markdown file so your notes build up session by session.
-
-## 💡 Example
-
-```
-$ python security_plus.py
-Teach me about: symmetric vs asymmetric encryption
-
-Querying gemma4:latest...
-
-[AI-generated explanation using stories and patterns]
-
-Saved to: study_notes/001-symmetric-vs-asymmetric-enc.md
+```sh
+python3 ollama_teach.py notes.txt
+python3 ollama_teach.py chapter5.txt --model gemma3 --timeout 600
 ```
 
-Each subsequent run increments the file number: `002-`, `003-`, and so on.
+This reads notes.txt, sends it to Ollama with the Security+ teaching prompt, prints the response, and
+writes it to notes.md.
 
-## 🚀 Usage
-
-**Prerequisites:** [Ollama](https://ollama.com) running locally with the `gemma4:latest` model pulled.
-
-```bash
-ollama pull gemma4:latest
-ollama serve
-```
-
-**Install dependencies:**
-
-```bash
-pip install uv
-uv sync
-```
-
-**Run:**
-
-```bash
-python security_plus.py
-```
-
-Enter any Security+ topic at the prompt. The explanation is printed to the terminal and saved to `study_notes/`.
+### Dependency
+Requires requests (`pip install requests`).
 
 <br>
