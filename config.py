@@ -2,6 +2,7 @@
 
 import dataclasses
 import os
+from pathlib import Path
 from typing import Optional
 from urllib.parse import urlparse
 
@@ -9,10 +10,12 @@ DEFAULT_MODEL = "gemma3"
 DEFAULT_OLLAMA_URL = "http://localhost:11434/api/generate"
 DEFAULT_TIMEOUT_SECONDS = 300
 
+INPUT_DIR = Path("input")
+OUTPUT_DIR = Path("output")
+
 
 @dataclasses.dataclass(frozen=True)
 class Config:
-    input_file: str
     model: str
     ollama_url: str
     timeout: int

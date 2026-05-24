@@ -2,17 +2,23 @@
 
 Four modules, each with a single responsibility:
 
-- `config.py` — `Config` dataclass built from CLI args; validated at startup
+- `config.py` — `Config` dataclass built from CLI args; validated at startup; defines `INPUT_DIR` and `OUTPUT_DIR`
 - `llm_client.py` — `LLMClient` protocol + `OllamaClient` adapter
 - `prompt_builder.py` — loads prompt template from file, env var, or built-in default
-- `teacher.py` — orchestration only: read input, build prompt, call LLM, write output
+- `teacher.py` — orchestration only: discover inputs, build prompt, call LLM, write output
 
 ### Error handling
-Specific exceptions for missing files, empty files, connection failures, timeouts, HTTP
-errors, and empty API responses — each with a clear message and distinct exit code.
+Specific exceptions for missing directory, empty files, connection failures, timeouts, HTTP
+errors, and empty API responses — each with a clear message and distinct exit code. Halts on
+the first file that fails.
+
+### Input / output
+
+Place `.txt` or `.md` files in the `input/` folder. Results are written as `.md` files to
+the `output/` folder (created automatically if absent). Output filenames match input stems:
+`input/chapter5.txt` → `output/chapter5.md`.
 
 ### Configuration
-- `input_file` — positional argument (required)
 - `--model` — defaults to gemma3
 - `--url` — defaults to http://localhost:11434/api/generate
 - `--timeout` — defaults to 300 seconds
@@ -23,14 +29,12 @@ errors, and empty API responses — each with a clear message and distinct exit 
 ### Example usage
 
 ```sh
-python3 teacher.py notes.txt
-python3 teacher.py chapter5.txt --model gemma3 --timeout 600
-python3 teacher.py notes.txt --prompt-file my_prompt.txt
-PROMPT_FILE=my_prompt.txt python3 teacher.py notes.txt
+# Process all files in ./input/, write results to ./output/
+python3 teacher.py
+python3 teacher.py --model gemma3 --timeout 600
+python3 teacher.py --prompt-file my_prompt.txt
+PROMPT_FILE=my_prompt.txt python3 teacher.py
 ```
-
-This reads the input file, sends it to Ollama with the Security+ teaching prompt, prints the response, and
-writes it to a `.md` file with the same name.
 
 ### Dependencies
 Requires requests (`pip install requests`).
