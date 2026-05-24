@@ -54,7 +54,8 @@ Which key do you share freely — the public key or the private key?
 
 ## 🚀 Usage
 
-**Prerequisites:** Python 3.11+, [Ollama](https://ollama.com) running locally, and at least one model pulled (default: `gemma3`).
+### Prerequisites
+Python 3.11+, [Ollama](https://ollama.com) running locally, and at least one model pulled (default: `gemma3`).
 
 ```sh
 # Pull the default model (first time only)
@@ -67,7 +68,7 @@ pip install requests
 python3 teacher.py
 ```
 
-**Options:**
+### Options
 
 | Flag | Default | Description |
 |---|---|---|
@@ -76,14 +77,14 @@ python3 teacher.py
 | `--timeout` | `300` | Request timeout in seconds |
 | `--prompt-file` | *(built-in)* | Path to a custom prompt template |
 
-**Environment variables:**
+### Environment variables
 
 | Variable | Description |
 |---|---|
 | `PROMPT_FILE` | Prompt template path (overridden by `--prompt-file`) |
 | `LOG_LEVEL` | Logging verbosity (`DEBUG`, `INFO`, `WARNING`) |
 
-**Examples:**
+### Examples
 
 ```sh
 # Use a different model with a longer timeout
@@ -100,3 +101,5 @@ LOG_LEVEL=DEBUG python3 teacher.py
 ```
 
 Output files are written to `./output/` (created automatically). Input and output filenames match: `input/chapter5.txt` → `output/chapter5.md`.
+
+<br>
