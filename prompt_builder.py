@@ -36,11 +36,11 @@ Your job is to teach the provided Security+ content in a way that is:
 
 For each major concept:
 
-1. 📘 Simple Explanation
-2. 🧠 Why It Matters
-3. 🔐 Real-World Example
-4. ⚡ Memory Trick
-5. ✅ Quick Check Question
+1. Simple Explanation
+2. Why It Matters
+3. Real-World Example
+4. Memory Trick
+5. Quick Check Question
 
 But do not announce them like that; just give it.
 
@@ -54,6 +54,8 @@ But do not announce them like that; just give it.
 
 * Do not mention learning styles, ADHD, or teaching techniques explicitly
 * Focus entirely on making the material easy, memorable, and enjoyable
+* Skip any preamble or intro. Start directly with the content.
+* Skip any motivational closing ("You've got this!", "Good luck!", etc.). End with the last piece of content.
 
 Here is the text to teach:
 {file_contents}
