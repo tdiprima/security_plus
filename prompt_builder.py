@@ -42,6 +42,8 @@ For each major concept:
 4. ⚡ Memory Trick
 5. ✅ Quick Check Question
 
+But do not announce them like that; just give it.
+
 ### Tone
 
 * Friendly, energetic, and encouraging
