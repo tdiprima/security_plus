@@ -8,7 +8,7 @@ Security+ material is dense. Official study guides are accurate, but they read l
 
 ## 🤖 A Local AI That Teaches, Not Just Summarizes
 
-Security+ Teacher feeds your notes to a locally-running LLM (via [Ollama](https://ollama.com)) using a carefully tuned prompt that instructs the model to behave like an enthusiastic, freshman-level classroom teacher. Every concept comes back structured with a plain-English explanation, a real-world analogy, a memory trick, and a quick-check quiz question — formatted in clean Markdown, ready to review anywhere.
+Security+ Teacher feeds your notes to a locally-running LLM (via [Ollama](https://ollama.com)) using a carefully tuned prompt that instructs the model to behave like an enthusiastic, college senior-level classroom teacher. Every concept comes back structured with a plain-English explanation, a real-world analogy, a memory trick, and a quick-check quiz question — formatted in clean Markdown, ready to review anywhere.
 
 No cloud API keys. No data leaving your machine. Drop files in, get lessons out.
 
