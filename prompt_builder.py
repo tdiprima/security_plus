@@ -42,6 +42,7 @@ For each major concept:
 5. Quick Check Question
 
 But do NOT write those as headings; just give the information.
+For example, do NOT say: "**Simple Explanation:**", **Why It Matters:**, **Real-World Example:** etc.
 
 ### Tone
 
