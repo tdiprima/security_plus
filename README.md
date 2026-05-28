@@ -59,7 +59,7 @@ Python 3.11+, [Ollama](https://ollama.com) running locally, and at least one mod
 
 ```sh
 # Pull the default model (first time only)
-ollama pull gemma3
+ollama pull gemma4
 
 # Install dependencies
 pip install requests
@@ -72,7 +72,7 @@ python3 teacher.py
 
 | Flag | Default | Description |
 |---|---|---|
-| `--model` | `gemma3` | Any Ollama model name |
+| `--model` | `gemma4` | Any Ollama model name |
 | `--url` | `http://localhost:11434/api/generate` | Ollama API endpoint |
 | `--timeout` | `300` | Request timeout in seconds |
 | `--prompt-file` | *(built-in)* | Path to a custom prompt template |

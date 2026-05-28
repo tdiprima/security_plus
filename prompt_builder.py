@@ -44,6 +44,8 @@ For each major concept:
 But do NOT write those as headings; just give the information.
 For example, do NOT say: "**Simple Explanation:**", **Why It Matters:**, **Real-World Example:** etc.
 
+Do not give stupid questions! For example, if you're talking about "ishkabibble", don't write a question where the answer is "ishkabibble"!  Choose a better question.
+
 ### Tone
 
 * Friendly, energetic, and encouraging

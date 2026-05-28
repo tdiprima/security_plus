@@ -31,7 +31,7 @@ def parse_config() -> Config:
     """Parse CLI args and construct a validated Config."""
     parser = argparse.ArgumentParser(
         description="Process all .txt/.md files in ./input through Ollama and write to ./output.",
-        epilog="Example: python3 teacher.py --model gemma3",
+        epilog="Example: python3 teacher.py --model gemma4",
     )
     parser.add_argument(
         "--model",

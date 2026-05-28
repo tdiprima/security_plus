@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Optional
 from urllib.parse import urlparse
 
-DEFAULT_MODEL = "gemma3"
+DEFAULT_MODEL = "gemma4"
 DEFAULT_OLLAMA_URL = "http://localhost:11434/api/generate"
 DEFAULT_TIMEOUT_SECONDS = 300
 
