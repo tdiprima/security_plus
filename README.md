@@ -55,7 +55,7 @@ Which key do you share freely — the public key or the private key?
 ## 🚀 Usage
 
 ### Prerequisites
-Python 3.11+, [Ollama](https://ollama.com) running locally, and at least one model pulled (default: `gemma3`).
+Python 3.11+, [Ollama](https://ollama.com) running locally, and at least one model pulled (default: `gemma4`).
 
 ```sh
 # Pull the default model (first time only)
